@@ -1,0 +1,14 @@
+<%= render 'layouts/header' %>
+<flex>
+<%= render 'layouts/sidebar' %>
+<main>
+    <div class="center">
+        <h2><%= @flug %>が完了しました</h2>
+        <% @order.each do |order| %>
+            <div><%= order.card_name%></div>
+            <div class="resizeimage"><%= image_tag order.shuuroku %></div>
+            <div>価格：<%= order.price %>円</div>
+        <% end %>
+    </div>
+</main>
+</flex>

@@ -1,0 +1,74 @@
+<%= render 'layouts/header' %>
+<flex>
+<%= render 'layouts/sidebar' %>
+<main>
+    <h2>振込申請</h2>
+    
+    <div class="tab" id="js-tab">
+      <div class="tab-nav">
+        <a href="" class="tab-nav-item is-active" data-nav="0">振込申請</a>
+        <a href="" class="tab-nav-item" data-nav="1">申請履歴</a>
+      </div>
+      <div class="tab-contents">
+        <div class="tab-contents-item" data-content="0">
+          <%= form_with model: @costs, local:  true do |price| %>
+          <%= price.hidden_field :user_id, :value => current_user.id, class: "form-control" %>
+          <%= price.hidden_field :order_id, :value => @order_id, class: "form-control" %>
+          
+          <div class="center">売上金<%= @price %>円</div>
+          
+          <label class="costlabel">金額</label>
+          <div class="costs">
+          <%= price.text_field :price, class: "form-control" %>
+          </div>
+          
+          <%= price.hidden_field :out_flug, :value => '0', class: "form-control" %>
+          
+          <label class="costlabel">銀行名</label>
+          <div class="costs">
+          <%= price.text_field :bank_name, class: "form-control" %>
+          </div>
+          
+          <label class="costlabel">口座種別</label>
+          <div class="costs">
+          <%= price.text_field :bank_type, class: "form-control" %>
+          </div>
+          
+          <label class="costlabel">口座番号</label>
+          <div class="costs">
+          <%= price.text_field :bank_number, class: "form-control" %>
+          </div>
+          
+          <label class="costlabel">口座名義人カナセイ</label>
+          <div class="costs">
+          <%= price.text_field :bank_user_name_sei, class: "form-control" %>
+          </div>
+          
+          <label class="costlabel">口座名義人カナメイ</label>
+          <div class="costs">
+          <%= price.text_field :bank_user_name_mei, class: "form-control" %>
+          </div>
+          
+          <div class="button3">
+          <%= price.submit "申請する", class: "btn btn-primary" %>
+          </div>
+          <% end %>
+        </div>
+        <div class="tab-contents-item" data-content="1">
+          <% @rireki.each do |product| %>
+            <div class="line">
+              <div>申請金額：<%= product.price*-1 %>円</div>
+              <div>銀行名：<%= product.bank_name %></div>
+              <div>口座種別：<%= product.bank_type %></div>
+              <div>口座番号：<%= product.bank_number %></div>
+              <div>口座名義人カナ：<%= product.bank_user_name_sei %><%= product.bank_user_name_mei %></div>
+              <div>申請日：<%= product.created_at %></div>
+            </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
+    <%= javascript_include_tag "costs.js" %>
+</main>
+</flex>

@@ -1,0 +1,50 @@
+<%= render 'layouts/header' %>
+<flex>
+<%= render 'layouts/sidebar' %>
+    <main>
+        <h2>入金画面</h2>
+        <%= form_with model: @bank, local:  true do |price| %>
+        
+        <label class="costlabel">ユーザーID</label>
+        <div class="costs">
+        <%= price.text_field :user_id, readonly: true, class: "form-control" %>
+        </div>
+        
+        <label class="costlabel">金額</label>
+        <div class="costs">
+        <%= price.text_field :price, readonly: true, class: "form-control" %>
+        </div>
+        
+        <label class="costlabel">銀行名</label>
+        <div class="costs">
+        <%= price.text_field :bank_name, readonly: true, class: "form-control" %>
+        </div>
+        
+        <label class="costlabel">口座種別</label>
+        <div class="costs">
+        <%= price.text_field :bank_type, readonly: true, class: "form-control" %>
+        </div>
+        
+        <label class="costlabel">口座番号</label>
+        <div class="costs">
+        <%= price.text_field :bank_number, readonly: true, class: "form-control" %>
+        </div>
+        
+        <label class="costlabel">口座名義人カナセイ</label>
+        <div class="costs">
+        <%= price.text_field :bank_user_name_sei, readonly: true, class: "form-control" %>
+        </div>
+        
+        <label class="costlabel">口座名義人カナメイ</label>
+        <div class="costs">
+        <%= price.text_field :bank_user_name_mei, readonly: true, class: "form-control" %>
+        </div>
+    
+        <%= price.hidden_field :out_flug, :value => '3', class: "form-control" %>
+    
+        <div class="button3">
+        <%= price.submit "振込完了", class: "btn btn-primary" %>
+        </div>
+        <% end %>
+    </main>
+    </flex>

@@ -1,0 +1,32 @@
+<sidebar>
+        <!-- 🍔 -->
+        <input id="menu" type="checkbox" />
+        <label for="menu" class="open">🈪</label>
+        <label for="menu" class="back"></label>
+        <!-- 🍔 -->
+
+        <aside>
+            <!-- 🍔 -->
+            <label for="menu" class="close">×</label>
+            <!-- 🍔 -->
+
+            <nav>
+                <ul>
+                        <li><%= link_to 'cardshopとは', products_buy_path %></li>
+                    <% unless user_signed_in? %>
+                        <li><%= link_to 'ログイン', login_path %></li>
+                        <li><%= link_to '会員登録', new_user_path %></li>
+                    <% else %>
+                        <li><%= link_to '購入・入札した商品', orders_buyer1_path %></li>
+                        <li><%= link_to '販売・出品した商品', orders_seller1_path %></li>
+                        <li><%= link_to '登録情報', profiles_new_path %></li>
+                        <li><%= link_to '出金', costs_new_path %></li>
+                        <li class="link"><%= button_to "ログアウト", logout_path, method: :delete %></li>
+                        <% if current_user.email == '1' %>
+                            <li><%= link_to '管理画面', costs_edit_path %></li>
+                        <% end %>
+                    <% end %>
+                </ul>
+            </nav>
+        </aside>
+</sidebar>

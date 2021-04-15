@@ -1,0 +1,87 @@
+<%= render 'layouts/header' %>
+<flex>
+<%= render 'layouts/sidebar' %>
+<main>
+    <div class="center"><%= @name %></div>
+    <div class="resizeimage"><%= image_tag @photo %></div>
+    
+    <div class="tab" id="js-tab">
+      <div class="tab-nav">
+        <a href="" class="tab-nav-item is-active" data-nav="0">入札</a>
+        <a href="" class="tab-nav-item" data-nav="1">購入</a>
+      </div>
+      <div class="tab-contents">
+        <div class="tab-contents-item" data-content="0">
+        <div>
+            <div class="center">
+                <% @orders.each do |order| %>
+                <%= order.price %>
+                <% end %>
+            </div>
+            
+            <% if @myorder.blank? %>
+                <%= form_with model: @neworder, local:  true do |new| %>
+                <div>
+                    <%= new.hidden_field :order_id, :value => @order_id, class: "form-control" %>
+                </div>
+                    <%= new.hidden_field :card_id, :value => @id, class: "form-control" %>
+                    <%= new.hidden_field :user_id, :value => current_user.id,class: "form-control" %>
+                    <%= new.hidden_field :buysell_flug, :value => '1', class: "form-control" %>
+                <div class="center">
+                    <%= new.text_field :price, class: "form-control" %>
+                </div>
+                    <%= new.hidden_field :orderdate, :value => @today,class: "form-control" %>
+                    <%= new.hidden_field :out_flug, :value => '0', class: "form-control" %>
+                    <%= new.hidden_field :out_user_id, :value => '0', class: "form-control" %>
+                <div class="button3">
+                    <%= new.submit "入札", class: "btn btn-primary" %>
+                </div>
+                <% end %>
+            <% elsif %>
+                <div class="center">現在<%= @buyprice.price %>円で入札中です</div>
+                    <%= form_with model: @buyprice, local:  true do |new| %>
+                
+                        <%= new.hidden_field :order_id, class: "form-control" %>
+                        <%= new.hidden_field :card_id, class: "form-control" %>
+                        <%= new.hidden_field :user_id, class: "form-control" %>
+                        <%= new.hidden_field :buysell_flug, :value => '99', class: "form-control" %>
+                        <%= new.hidden_field :price, class: "form-control" %>
+                        <%= new.hidden_field :orderdate, :value => @today,class: "form-control" %>
+                        <%= new.hidden_field :out_flug, class: "form-control" %>
+                        <%= new.hidden_field :out_user_id, class: "form-control" %>
+                    <div class="button3">
+                        <%= new.submit "入札を取り消す", class: "btn btn-primary" %>
+                    </div>
+                    <% end %>
+            <% end %>
+        </div>
+        </div>
+        <div class="tab-contents-item" data-content="1">
+
+        <div>
+            <% if @price.blank? %>
+                <div class="center">現在出品はありません</div>
+            <% elsif %>
+                <%= form_with model: @order, local:  true do |update| %>
+                <div class="center">
+                    <%= @price %>
+                </div>
+                    <%= update.hidden_field :order_id, class: "form-control" %>
+                    <%= update.hidden_field :card_id, class: "form-control" %>
+                    <%= update.hidden_field :user_id, class: "form-control" %>
+                    <%= update.hidden_field :buysell_flug, :value => '2', class: "form-control" %>
+                    <%= update.hidden_field :price, class: "form-control" %>
+                    <%= update.hidden_field :orderdate,:value => @today, class: "form-control" %>
+                    <%= update.hidden_field :out_flug, class: "form-control" %>
+                    <%= update.hidden_field :out_user_id, :value => current_user.id, class: "form-control" %>
+                <div class="button3">
+                    <%= update.submit "購入", class: "btn btn-primary" %>
+                </div>
+                <% end %>
+            <% end %>
+        </div>
+        </div>
+    </div>
+    <%= javascript_include_tag "costs.js" %>
+</main>
+</flex>

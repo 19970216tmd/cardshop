@@ -1,0 +1,49 @@
+<%= render 'layouts/header' %>
+<flex>
+<%= render 'layouts/sidebar' %>
+
+<main>
+    <div class="center">
+    
+    <% if @order.out_flug == '0' %>
+        <h2>商品を発送してください</h2>
+        
+        <div>
+            <%= @profile.postalcode %>
+        </div>
+        <div>
+            <%= @profile.city %>
+            <%= @profile.adress %>
+            <%= @profile.building %>
+        </div>
+        <div>
+            <%= @profile.sei_kanzi %>
+            <%= @profile.mei_kanzi %>
+        </div>
+        
+        <%= form_with model: @order, local:  true do |new| %>
+            <%= new.hidden_field :order_id, class: "form-control" %>
+            <%= new.hidden_field :card_id, class: "form-control" %>
+            <%= new.hidden_field :user_id, class: "form-control" %>
+            <%= new.hidden_field :buysell_flug, class: "form-control" %>
+            <%= new.hidden_field :price, class: "form-control" %>
+            <%= new.hidden_field :orderdate,class: "form-control" %>
+            <%= new.hidden_field :out_flug, :value => '1', class: "form-control" %>
+            <%= new.hidden_field :out_user_id, class: "form-control" %>
+        <div>
+            <%= new.submit "商品を発送しました", class: "btn btn-primary" %>
+        </div>
+        <% end %>
+        
+    <% elsif @order.out_flug == '1' %>
+        <h2>商品を発送しました　到着までお待ちください</h2>
+    <% elsif @order.out_flug == '2' %>
+        <h2>取引が完了しました</h2>
+    <% end %>
+    
+    <div><%= @detail.card_name %></div>
+    <div class="resizeimage"><%= image_tag @detail.shuuroku %></div>
+    <div>販売価格：<%= @detail.price %>円</div>
+    </div>
+</main>
+</flex>

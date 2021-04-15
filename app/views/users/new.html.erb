@@ -1,0 +1,31 @@
+<%= render 'layouts/header' %>
+<flex>
+<%= render 'layouts/sidebar' %>
+
+<main>
+<h2>会員登録</h2>
+
+<%= form_with model: @user, url: user_path, local: true do |f| %>
+  
+  <label class="costlabel">email</label>
+  <div class="costs">
+    <%= f.text_field :email %>
+  </div>
+
+  
+  <label class="costlabel">password</label>
+  <div class="costs">
+    <%= f.password_field :password %>
+  </div>
+
+  <label class="costlabel">password_confirmation</label>
+  <div class="costs">
+    <%= f.password_field :password_confirmation %>
+  </div>
+  <div class="button3">
+    <%= f.submit "Sign up" %>
+  </div>
+  <%= link_to "Login", login_path %>
+<% end %>
+</main>
+</flex>

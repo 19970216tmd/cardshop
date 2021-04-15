@@ -1,0 +1,35 @@
+<%= render 'layouts/header' %>
+<flex>
+<%= render 'layouts/sidebar' %>
+<main>
+    <h2>管理画面</h2>
+    <div class="tab" id="js-tab">
+        <div class="tab-nav">
+            <a href="" class="tab-nav-item is-active" data-nav="0">未入金</a>
+            <a href="" class="tab-nav-item" data-nav="1">入金済</a>
+        </div>
+        <div class="tab-contents">
+            <div class="tab-contents-item" data-content="0">
+                <% @edit.each do |product| %>
+                <div class="line">
+                    <div>口座名義人カナ：<%= product.bank_user_name_sei %><%=product.bank_user_name_mei %></div>
+                    <div>申請金額：<%= link_to product.price*-1,costs_bank_path(id: product.id) %></div>
+                    <div>申請日：<%= product.created_at%></div>
+                </div>
+                <% end %>
+            </div>
+            <div class="tab-contents-item" data-content="1">
+                <% @finish.each do |product| %>
+                <div class="line">
+                    <div>口座名義人カナ：<%= product.bank_user_name_sei %><%=product.bank_user_name_mei %></div>
+                    <div>申請金額：<%= product.price*-1 %></div>
+                    <div>申請日：<%= product.created_at %></div>
+                    <div>入金日：<%= product.updated_at %></div>
+                </div>
+                <% end %>
+            </div>
+        </div>
+    </div>
+    <%= javascript_include_tag "costs.js" %>
+</main>
+</flex>

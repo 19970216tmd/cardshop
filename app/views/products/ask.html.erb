@@ -1,0 +1,14 @@
+<%= render 'layouts/header' %>
+<flex>
+    <%= render 'layouts/sidebar' %>
+    <main>
+        <div class="center"><%= @name %></div>
+    
+        <div class="resizeimage"><%= image_tag @photo %></div>
+    
+        <div class="buttonedit">
+            <div class="button1"><%= link_to '購入または入札',orders_buy_path(card_id: @id)  %></div>
+            <div class="button2"><%= link_to '販売または出品', orders_sell_path(card_id: @id) %></div>
+        </div>
+    </main>
+</flex>
