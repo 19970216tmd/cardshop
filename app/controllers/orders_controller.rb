@@ -94,25 +94,37 @@ class OrdersController < ApplicationController
   
   def create
      @neworder = Order.new(orderparams)
-    if @neworder.save
-      redirect_to products_sell_path(order_id: @neworder.order_id)
+     @profile = Profile.find_by(user_id: current_user.id)
+     
+    if @profile.blank?
+      redirect_to profiles_new_path
     else
+      if @neworder.save
+        redirect_to products_sell_path(order_id: @neworder.order_id)
+      else
+      end
     end
   end
   
   def update
     #render plain: params.inspect
     @order = Order.find(params[:id])
-    if @order.update(orderparams)
-      if @order.out_flug == '0'
-        redirect_to products_sell_path(order_id: @order.order_id)
-      elsif @order.out_flug == '2'
-        @cost = Cost.create(costparams[:cost])
-        redirect_to request.referer
-      else
-        redirect_to request.referer
-      end
+    @profile = Profile.find_by(user_id: current_user.id)
+    
+    if @profile.blank?
+      redirect_to profiles_new_path
     else
+      if @order.update(orderparams)
+        if @order.out_flug == '0'
+          redirect_to products_sell_path(order_id: @order.order_id)
+        elsif @order.out_flug == '2'
+          @cost = Cost.create(costparams[:cost])
+          redirect_to request.referer
+        else
+          redirect_to request.referer
+        end
+      else
+      end
     end
   end
   
