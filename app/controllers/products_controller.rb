@@ -20,6 +20,8 @@ helper_method :user_signed_in?
       @flug = '出品'
     elsif buysell_flug == '4'
       @flug = '販売'
+    elsif buysell_flug == '99'
+      @flug = '取り消し'
     end
   end
 
