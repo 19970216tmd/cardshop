@@ -15,8 +15,27 @@ main{
     background: #FAEBD7;
 }
 
+h1{
+    //margin_left: 10px;
+    padding: 1rem 2rem;
+    border-left: 5px inset #dcdcdc;
+    background: #fffaf0;
+    
+    text-align: center;
+    color: #a9a9a9;
+    text-decoration:underline;
+    text-decoration-color: #a9a9a9;
+    font-size: 1.5rem;
+}
+
+h1 > a{
+    color: #a9a9a9;
+    text-decoration:underline;
+    text-decoration-color: #a9a9a9;
+}
+
 h2{
-    margin_left: 10px;
+    //margin_left: 10px;
     padding: 1rem 2rem;
     border-left: 5px inset #dcdcdc;
     background: #fffaf0;
@@ -37,8 +56,8 @@ h2{
 .button1 {
   display: inline-block;
   padding: 0.5em 1em;
-  background: #6b8423;/*ボタン色*/
-  border-bottom: solid 4px #556b2f;
+  background: #FFBBAE;/*ボタン色*/
+  border-bottom: solid 4px #FF856E;
   border-radius: 3px;
 }
 .button1:active {
@@ -56,9 +75,9 @@ h2{
   display: inline-block;
   padding: 0.5em 1em;
   text-decoration: none;
-  background: #cd5c5c;/*ボタン色*/
+  background: #77A798;/*ボタン色*/
   color: #FFF;
-  border-bottom: solid 4px #b22222;
+  border-bottom: solid 4px #2f6143;
   border-radius: 3px;
 }
 .button2:active {
@@ -75,8 +94,11 @@ input[type="submit"]{
     color: #FFF;
     display: inline-block;
     padding: 0.5em 1em;
-    background: #6b8423;/*ボタン色*/
-    border-bottom: solid 4px #556b2f;
+    background: #FFBBAE;/*ボタン色*/
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    border-bottom: solid 4px #FF856E;
     border-radius: 3px;
 }
 .button3:active {
@@ -100,7 +122,7 @@ sidebar {
     margin: 0;
     display: flex;
     font-size: 2rem;
-    min-height: 100%;
+    min-height: 100vh;
     background: #FFBBAE;
 }
 aside {
@@ -175,6 +197,11 @@ textarea {
 
 .center{
     text-align: center;
+}
+
+.cardname{
+    text-align: center;
+    //padding-bottom: 0.5em;
 }
 
 .costlabel{

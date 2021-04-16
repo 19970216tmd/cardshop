@@ -2,7 +2,8 @@
 <flex>
 <%= render 'layouts/sidebar' %>
 <main>
-    <div class="center"><%= @name %></div>
+    <h1><%= link_to 'home',products_home_path %> >> <%= link_to @name,products_ask_path(card_id: @id) %> >> 購入または入札</h1>
+    <div class="cardname"><%= @name %></div>
     <div class="resizeimage"><%= image_tag @photo %></div>
     
     <div class="tab" id="js-tab">
