@@ -12,14 +12,14 @@ flex{
 
 main{
     width: 100%;
-    background: #bfb8af;
+    background: #FAEBD7;
 }
 
 h2{
     margin_left: 10px;
     padding: 1rem 2rem;
-    border-left: 5px dotted #000;
-    background: #e9e3df;
+    border-left: 5px inset #dcdcdc;
+    background: #fffaf0;
     font-size: 2rem;
 }
 
@@ -92,7 +92,7 @@ input[type="submit"]{
 }
 
 header {
-    background: #6b8e23;
+    background: #FFBBAE;
     text-align: center;
 }
 
@@ -100,8 +100,8 @@ sidebar {
     margin: 0;
     display: flex;
     font-size: 2rem;
-    min-height: 100vh;
-    background: #6b8e23;
+    min-height: 100%;
+    background: #FFBBAE;
 }
 aside {
     width: 20%;
@@ -181,7 +181,7 @@ textarea {
     margin-left: 10%;
     margin_bottom: 0px;
     font-size: 1rem;
-    background: #6b8e23;
+    background: #FFBBAE;
     color: #FFF;
 }
 
@@ -202,6 +202,13 @@ textarea {
     
 }
 
+.headerimage {
+    vertical-align: middle;
+    max-width: 400px; /* 最大幅 */
+    min-width: 200px; /* 最小幅 */
+    
+}
+
 .homeimage img { width: 100%; }
 
 homelink > a {
@@ -210,12 +217,21 @@ homelink > a {
     font-size: 1.5rem;
 }
 
+.status{
+    font-size: 1.5rem;
+    background: #FFBBAE;
+    color: #FFF;
+    display: inline-block;
+}
+
 .line:first-child {
 	border-top-style: solid;
+	border-top-color: #dcdcdc;
 }
 
 .line{
     border-bottom-style: solid;
+    border-bottom-color: #dcdcdc;
     margin-left: 10%;
     margin-right: 10%;
 }
@@ -255,7 +271,7 @@ input[type="checkbox"] {
         left: -250px;
         height: 100%;
         transition: all 0.2s;
-        background: #6b8e23;
+        background: #FFBBAE;
     }
     input[type="checkbox"]:checked ~ aside {
         left: 0;

@@ -17,11 +17,11 @@
                         <div class="homeimage"><%= image_tag sell.shuuroku %></div>
                         <homelink><%= link_to sell.card_name, orders_seller2_path(order_id: sell.order_id) %></homelink>
                         <% if sell.out_flug == '0' %>
-                            発送待ち
+                            <div class ="status">発送待ち</div>
                         <% elsif sell.out_flug == '1' %>
-                            受け取り評価待ち
+                            <div class ="status">受け取り評価待ち</div>
                         <% elsif sell.out_flug == '2' %>
-                            取引完了
+                            <div class ="status">取引完了</div>
                         <% end %>
                     </div>
                     <% end %>
@@ -43,12 +43,8 @@
                     <div class="line">
                         <div class="homeimage"><%= image_tag buy.shuuroku %></div>
                         <homelink><%= link_to buy.card_name, orders_seller2_path(order_id: buy.order_id) %></homelink>
-                        <% if buy.out_flug == '0' %>
-                            発送待ち
-                        <% elsif buy.out_flug == '1' %>
-                            受け取り評価待ち
-                        <% elsif buy.out_flug == '2' %>
-                            取引完了
+                        <% if buy.out_flug == '2' %>
+                            <div class ="status">取引完了</div>
                         <% end %>
                     </div>
                     <% end %>

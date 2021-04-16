@@ -8,7 +8,7 @@
 }
 .tab-nav-item {
   margin-right: 2px;
-  background: #ccc;
+  background: #fffaf0;
   color: #000;
   padding: 10px 20px;
   text-decoration: none;
@@ -18,15 +18,15 @@
   text-align: center;
 }
 .tab-nav-item.is-active {
-  background: #000;
-  color: #fff;
+  background: #FFBBAE;
+  color: #fffaf0;
 }
 .tab-contents {
-  border: 1px solid #ccc;
+  border: 1px solid #FFBBAE;
   font-size: 1.5rem;
   padding: 20px;
   min-height: 100vh;
-  background: #e9e3df;
+  background: #fffaf0;
 }
 .tab-contents-item {
   display: none;
