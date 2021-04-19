@@ -12,6 +12,7 @@
             <div class="tab-contents-item" data-content="0">
                 <% @edit.each do |product| %>
                 <div class="line">
+                    <div>ユーザーID：<%= product.user_id %></div>
                     <div>口座名義人カナ：<%= product.bank_user_name_sei %><%=product.bank_user_name_mei %></div>
                     <div>申請金額：<%= link_to product.price*-1,costs_bank_path(id: product.id) %></div>
                     <div>申請日：<%= product.created_at%></div>
@@ -21,6 +22,7 @@
             <div class="tab-contents-item" data-content="1">
                 <% @finish.each do |product| %>
                 <div class="line">
+                    <div>ユーザーID：<%= product.user_id %></div>
                     <div>口座名義人カナ：<%= product.bank_user_name_sei %><%=product.bank_user_name_mei %></div>
                     <div>申請金額：<%= product.price*-1 %></div>
                     <div>申請日：<%= product.created_at %></div>

@@ -1,5 +1,9 @@
 @import "costs.scss";
 
+html {
+  font-family: "Yu Gothic","YuGothic";
+}
+
 body {
     font-size: 2rem;
     margin: 0 auto;
@@ -235,6 +239,13 @@ textarea {
     min-width: 200px; /* 最小幅 */
     
 }
+
+.stockcardimage {
+    vertical-align: middle;
+    text-align: center;
+}
+
+.stockcardimage img { width: 100%; }
 
 .homeimage img { width: 100%; }
 
