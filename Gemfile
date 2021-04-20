@@ -42,7 +42,8 @@ gem 'bcrypt', '~> 3.1.11'
 group :development do
   gem 'rubocop', require: false
   gem 'rubocop-rails', require: false
-  gem 'brakeman', require: false
+  #gem 'brakeman', require: false
+  gem 'rails_best_practices', require: false
 end
 
 group :development, :test do
