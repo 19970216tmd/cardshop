@@ -13,5 +13,7 @@ class CreateCosts < ActiveRecord::Migration[5.2]
 
       t.timestamps
     end
+    add_index :costs, :user_id
+    add_index :costs, :order_id
   end
 end

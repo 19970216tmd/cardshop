@@ -8,7 +8,7 @@
                 <h2>商品の発送をお待ちください</h2>
             <% elsif @order.out_flug == '1' %>
                 <h2>商品が発送されました、受け取りをしてください</h2>
-            
+
                 <%= form_with model: @order, local:  true do |new| %>
                     <%= new.hidden_field :order_id, class: "form-control" %>
                     <%= new.hidden_field :card_id, class: "form-control" %>
@@ -18,7 +18,7 @@
                     <%= new.hidden_field :orderdate,class: "form-control" %>
                     <%= new.hidden_field :out_flug, :value => '2', class: "form-control" %>
                     <%= new.hidden_field :out_user_id, class: "form-control" %>
-            
+
                     <%= new.fields_for @cost do |cost| %>
                         <% if @order.buysell_flug == '4' %>
                             <%= cost.hidden_field :user_id, :value => @order.user_id %>
@@ -29,7 +29,7 @@
                         <%= cost.hidden_field :price, :value => @order.price%>
                         <%= cost.hidden_field :out_flug, :value => @order.out_flug %>
                     <% end %>
-                    
+
                     <div>
                         <%= new.submit "商品を受け取りました", class: "btn btn-primary" %>
                     </div>
@@ -38,7 +38,7 @@
             <% elsif @order.out_flug == '2' %>
                 <h2>取引が完了しました</h2>
             <% end %>
-        
+
             <div><%= @detail.card_name %></div>
             <div class="resizeimage"><%= image_tag @detail.shuuroku %></div>
             <div><%= @detail.price %></div>

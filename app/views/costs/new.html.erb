@@ -3,7 +3,7 @@
 <%= render 'layouts/sidebar' %>
 <main>
     <h2>振込申請</h2>
-    
+
     <div class="tab" id="js-tab">
       <div class="tab-nav">
         <a href="" class="tab-nav-item is-active" data-nav="0">振込申請</a>
@@ -14,41 +14,41 @@
           <%= form_with model: @costs, local:  true do |price| %>
           <%= price.hidden_field :user_id, :value => current_user.id, class: "form-control" %>
           <%= price.hidden_field :order_id, :value => @order_id, class: "form-control" %>
-          
+
           <div class="center">売上金<%= @price %>円</div>
-          
+
           <label class="costlabel">金額</label>
           <div class="costs">
           <%= price.text_field :price, class: "form-control" %>
           </div>
-          
+
           <%= price.hidden_field :out_flug, :value => '0', class: "form-control" %>
-          
+
           <label class="costlabel">銀行名</label>
           <div class="costs">
           <%= price.text_field :bank_name, class: "form-control" %>
           </div>
-          
+
           <label class="costlabel">口座種別</label>
           <div class="costs">
           <%= price.text_field :bank_type, class: "form-control" %>
           </div>
-          
+
           <label class="costlabel">口座番号</label>
           <div class="costs">
           <%= price.text_field :bank_number, class: "form-control" %>
           </div>
-          
+
           <label class="costlabel">口座名義人カナセイ</label>
           <div class="costs">
           <%= price.text_field :bank_user_name_sei, class: "form-control" %>
           </div>
-          
+
           <label class="costlabel">口座名義人カナメイ</label>
           <div class="costs">
           <%= price.text_field :bank_user_name_mei, class: "form-control" %>
           </div>
-          
+
           <div class="button3">
           <%= price.submit "申請する", class: "btn btn-primary" %>
           </div>

@@ -18,7 +18,7 @@
                     <%= @profile.sei_kanzi %>
                     <%= @profile.mei_kanzi %>
                 </div>
-        
+
                 <%= form_with model: @order, local:  true do |new| %>
                     <%= new.hidden_field :order_id, class: "form-control" %>
                     <%= new.hidden_field :card_id, class: "form-control" %>
@@ -32,13 +32,13 @@
                         <%= new.submit "商品を発送しました", class: "btn btn-primary" %>
                     </div>
                 <% end %>
-    
+
             <% elsif @order.out_flug == '1' %>
                 <h2>商品を発送しました　到着までお待ちください</h2>
             <% elsif @order.out_flug == '2' %>
                 <h2>取引が完了しました</h2>
             <% end %>
-    
+
             <div><%= @detail.card_name %></div>
             <div class="resizeimage"><%= image_tag @detail.shuuroku %></div>
             <div>販売価格：<%= @detail.price %>円</div>

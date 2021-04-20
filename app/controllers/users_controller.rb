@@ -1,6 +1,5 @@
 class UsersController < ApplicationController
   before_action :already_login?, only: %i[new create]
-  before_action :login?
 
   def new
     @user = User.new

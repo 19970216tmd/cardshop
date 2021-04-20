@@ -7,12 +7,12 @@
         <div class="resizeimage"><%= image_tag @photo %></div>
 
         <div class="tab" id="js-tab">
-            
+
             <div class="tab-nav">
                 <a href="" class="tab-nav-item is-active" data-nav="0">出品</a>
                 <a href="" class="tab-nav-item" data-nav="1">販売</a>
             </div>
-            
+
             <div class="tab-contents">
                 <div class="tab-contents-item" data-content="0">
                    <div class="center">
@@ -20,7 +20,7 @@
                         <%= order.price %>
                         <% end %>
                     </div>
-            
+
                     <% if @myorder.blank? %>
                         <%= form_with model: @neworder, local:  true do |new| %>
                             <%= new.hidden_field :order_id, :value => @order_id, class: "form-control" %>
@@ -54,7 +54,7 @@
                         <% end %>
                     <% end %>
                 </div>
-            
+
                 <div class="tab-contents-item" data-content="1">
                     <% if @price.blank? %>
                         <div class="center">現在入札はありません</div>
