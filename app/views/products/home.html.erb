@@ -1,15 +1,15 @@
 <%= render 'layouts/header' %>
 <flex>
-<%= render 'layouts/sidebar' %>
-<main>
-    <h2>カード一覧</h2>
-    <div>
-        <% @products.each do |product| %>
-        <div class="line">
-            <div class="homeimage"><%= image_tag product.shuuroku %></div>
-            <homelink><%= link_to product.card_name, products_ask_path(card_id: product.card_id) %></homelink>
+    <%= render 'layouts/sidebar' %>
+    <main>
+        <h2>カード一覧</h2>
+        <div>
+            <% @products.each do |product| %>
+                <div class="line">
+                    <div class="homeimage"><%= image_tag product.shuuroku %></div>
+                    <homelink><%= link_to product.card_name, products_ask_path(card_id: product.card_id) %></homelink>
+                </div>
+            <% end %>
         </div>
-        <% end %>
-    </div>
+    </main>
 </flex>
-</body>

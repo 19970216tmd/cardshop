@@ -19,26 +19,26 @@ Rails.application.routes.draw do
   get 'products/sell'
   get 'products/bid'
   get 'products/ask'
-  
-  post 'profiles/new', to: "profiles#create"
-  patch 'profiles/new', to: "profiles#update"
-  put 'profiles/new', to: "profiles#updade"
-  
-  post 'costs/new', to: "costs#create"
-  patch 'costs/bank', to: "costs#update"
-  put 'costs/bank', to: "costs#update"
-  
+
+  post 'profiles/new', to: 'profiles#create'
+  patch 'profiles/new', to: 'profiles#update'
+  put 'profiles/new', to: 'profiles#updade'
+
+  post 'costs/new', to: 'costs#create'
+  patch 'costs/bank', to: 'costs#update'
+  put 'costs/bank', to: 'costs#update'
+
   root 'products#home'
-  
+
   resources :products
   resources :orders
   resources :profiles
   resources :costs
-  
-  resource :user, only: [:new, :create]
-  get 'login', to: "sessions#new"
-  post 'login', to: "sessions#create"
-  delete 'logout', to: "sessions#destroy"
+
+  resource :user, only: %i[new create]
+  get 'login', to: 'sessions#new'
+  post 'login', to: 'sessions#create'
+  delete 'logout', to: 'sessions#destroy'
 
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

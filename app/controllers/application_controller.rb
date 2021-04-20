@@ -1,25 +1,18 @@
 class ApplicationController < ActionController::Base
-    helper_method :current_user, :user_signed_in?
+  helper_method :current_user, :user_signed_in?
 
   def login?
-    if current_user.nil?
-      redirect_to login_path, alert: "You have to log in."
-    end
+    redirect_to login_path, alert: 'You have to log in.' if current_user.nil?
   end
 
   def already_login?
-    unless current_user.nil?
-      redirect_to root_path, notice: "You are already logged in."
-    end
+    redirect_to root_path, notice: 'You are already logged in.' unless current_user.nil?
   end
-
 
   def current_user
-    if session[:user_id]
-      current_user ||= User.find(session[:user_id])
-    end
+    current_user ||= User.find(session[:user_id]) if session[:user_id]
   end
-  
+
   def user_signed_in?
     !!current_user
   end

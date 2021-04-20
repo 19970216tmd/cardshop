@@ -1,57 +1,62 @@
 <%= render 'layouts/header' %>
 <flex>
-<%= render 'layouts/sidebar' %>
-<main>
-    <h2>購入・入札した商品</h2>
-    <div class="tab" id="js-tab">
-        <div class="tab-nav">
-            <a href="" class="tab-nav-item is-active" data-nav="0">購入した商品</a>
-            <a href="" class="tab-nav-item" data-nav="1">入札した商品</a>
-            <a href="" class="tab-nav-item" data-nav="2">過去の取引</a>
-        </div>
-        <div class="tab-contents">
-            <div class="tab-contents-item" data-content="0">
-                <div>
-                    <% @buy.each do |buy| %>
-                    <div class="line">
-                        <div class="homeimage"><%= image_tag buy.shuuroku %></div>
-                        <homelink><%= link_to buy.card_name, orders_buyer2_path(order_id: buy.order_id) %></homelink>
-                        <% if buy.out_flug == '0' %>
-                            <div class ="status">発送待ち</div>
-                        <% elsif buy.out_flug == '1' %>
-                            <div class ="status">受け取り評価待ち</div>
-                        <% elsif buy.out_flug == '2' %>
-                            <div class ="status">取引完了</div>
+    <%= render 'layouts/sidebar' %>
+    <main>
+        <h2>購入・入札した商品</h2>
+        <div class="tab" id="js-tab">
+            
+            <div class="tab-nav">
+                <a href="" class="tab-nav-item is-active" data-nav="0">購入した商品</a>
+                <a href="" class="tab-nav-item" data-nav="1">入札した商品</a>
+                <a href="" class="tab-nav-item" data-nav="2">過去の取引</a>
+            </div>
+            
+            <div class="tab-contents">
+                <div class="tab-contents-item" data-content="0">
+                    <div>
+                        <% @buy.each do |buy| %>
+                        <div class="line">
+                            <div class="homeimage"><%= image_tag buy.shuuroku %></div>
+                            <homelink><%= link_to buy.card_name, orders_buyer2_path(order_id: buy.order_id) %></homelink>
+                            <% if buy.out_flug == '0' %>
+                                <div class ="status">発送待ち</div>
+                            <% elsif buy.out_flug == '1' %>
+                                <div class ="status">受け取り評価待ち</div>
+                            <% elsif buy.out_flug == '2' %>
+                                <div class ="status">取引完了</div>
+                            <% end %>
+                        </div>
                         <% end %>
                     </div>
-                    <% end %>
                 </div>
-            </div>
-            <div class="tab-contents-item" data-content="1">
-                <div>
-                    <% @bid.each do |bid| %>
-                    <div class="line">
-                        <div class="homeimage"><%= image_tag bid.shuuroku %></div>
-                        <homelink><%= link_to bid.card_name, orders_buy_path(card_id: bid.card_id) %></homelink>
-                    </div>
-                    <% end %>
-                </div>
-            </div>
-            <div class="tab-contents-item" data-content="2">
-                <div>
-                    <% @end.each do |buy| %>
-                    <div class="line">
-                        <div class="homeimage"><%= image_tag buy.shuuroku %></div>
-                        <homelink><%= link_to buy.card_name, orders_buyer2_path(order_id: buy.order_id) %></homelink>
-                        <% if buy.out_flug == '2' %>
-                            <div class ="status">取引完了</div>
+            
+                <div class="tab-contents-item" data-content="1">
+                    <div>
+                        <% @bid.each do |bid| %>
+                        <div class="line">
+                            <div class="homeimage"><%= image_tag bid.shuuroku %></div>
+                            <homelink><%= link_to bid.card_name, orders_buy_path(card_id: bid.card_id) %></homelink>
+                        </div>
                         <% end %>
                     </div>
-                    <% end %>
                 </div>
+            
+                <div class="tab-contents-item" data-content="2">
+                    <div>
+                        <% @end.each do |buy| %>
+                        <div class="line">
+                            <div class="homeimage"><%= image_tag buy.shuuroku %></div>
+                            <homelink><%= link_to buy.card_name, orders_buyer2_path(order_id: buy.order_id) %></homelink>
+                            <% if buy.out_flug == '2' %>
+                                <div class ="status">取引完了</div>
+                            <% end %>
+                        </div>
+                        <% end %>
+                    </div>
+                </div>
+                
             </div>
         </div>
-    </div>
-    <%= javascript_include_tag "costs.js" %>
-</main>
+        <%= javascript_include_tag "costs.js" %>
+    </main>
 </flex>

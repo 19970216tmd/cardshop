@@ -1,53 +1,58 @@
 <%= render 'layouts/header' %>
 <flex>
-<%= render 'layouts/sidebar' %>
-<main>
-    <h2>登録情報</h2>
-    <div>
+    <%= render 'layouts/sidebar' %>
+    <main>
+        <h2>登録情報</h2>
         <%= form_with model: @profiles, local:  true do |new| %>
-        <div>
             <%= new.hidden_field :user_id, :value => current_user.id, class: "form-control" %>
             <label class="costlabel">郵便番号</label>
             <div class="costs">
-            <%= new.text_field :postalcode, class: "form-control" %>
+                <%= new.text_field :postalcode, class: "form-control" %>
             </div>
+            
             <label class="costlabel">市区町村</label>
             <div class="costs">
-            <%= new.text_field :city, class: "form-control" %>
+                <%= new.text_field :city, class: "form-control" %>
             </div>
+        
             <label class="costlabel">住所</label>
             <div class="costs">
-            <%= new.text_field :adress, class: "form-control" %>
+                <%= new.text_field :adress, class: "form-control" %>
             </div>
+        
             <label class="costlabel">建物</label>
             <div class="costs">
-            <%= new.text_field :building, class: "form-control" %>
+                <%= new.text_field :building, class: "form-control" %>
             </div>
+        
             <label class="costlabel">カナ姓</label>
             <div class="costs">
-            <%= new.text_field :sei_kana, class: "form-control" %>
+                <%= new.text_field :sei_kana, class: "form-control" %>
             </div>
+        
             <label class="costlabel">漢字姓</label>
             <div class="costs">
-            <%= new.text_field :sei_kanzi, class: "form-control" %>
+                <%= new.text_field :sei_kanzi, class: "form-control" %>
             </div>
+            
             <label class="costlabel">カナ名</label>
             <div class="costs">
-            <%= new.text_field :mei_kana, class: "form-control" %>
+                <%= new.text_field :mei_kana, class: "form-control" %>
             </div>
+            
             <label class="costlabel">漢字名</label>
             <div class="costs">
-            <%= new.text_field :mei_kanzi, class: "form-control" %>
+                <%= new.text_field :mei_kanzi, class: "form-control" %>
             </div>
+            
             <label class="costlabel">電話番号</label>
             <div class="costs">
-            <%= new.text_field :tel, class: "form-control" %>
+                <%= new.text_field :tel, class: "form-control" %>
             </div>
+            
             <div class="button3">
                 <%= new.submit "保存する", class: "btn btn-primary" %>
             </div>
-        </div>
         <% end %>
-    </div>
-</main>
+    </main>
 </flex>

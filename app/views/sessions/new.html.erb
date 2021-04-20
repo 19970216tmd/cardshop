@@ -1,25 +1,28 @@
 <%= render 'layouts/header' %>
 <flex>
-<%= render 'layouts/sidebar' %>
+  <%= render 'layouts/sidebar' %>
 
-<main>
-<h2>ログイン</h2>
+  <main>
+    <h2>ログイン</h2>
 
-<%= form_with url: login_path, local: true do |f| %>
-  <label class="costlabel">email</label>
-  <div class="costs">
-    <%= f.text_field :email %>
-  </div>
+    <%= form_with url: login_path, local: true do |f| %>
+      <label class="costlabel">email</label>
+      <div class="center">
+        <%= f.text_field :email %>
+      </div>
 
-  <label class="costlabel">password</label>
-  <div class="costs">
-    <%= f.password_field :password %>
-  </div>
+      <label class="costlabel">password</label>
+      <div class="center">
+        <%= f.password_field :password %>
+      </div>
 
-  <div class="button3">
-    <%= f.submit "Login" %>
-  </div>
-  <%= link_to "Sign up", new_user_path %>
-<% end %>
-</main>
+      <div class="button3">
+        <%= f.submit "Login" %>
+      </div>
+    <% end %>
+
+    <div class="center">
+      <%= link_to "会員登録がお済みではない方はこちら", new_user_path %>
+    </div>
+  </main>
 </flex>
