@@ -3,38 +3,21 @@ class OrdersController < ApplicationController
 
   def buy
     @id = params[:card_id]
-    card = Product.find_by(card_id: @id)
-    @name = card.card_name
-    @photo = card.shuuroku
-    @order_id = Order.maximum('order_id')
-    @order_id = if @order_id.blank?
-                  1
-                else
-                  @order_id + 1
-                end
-
-    @orders = Order.where(card_id: @id, buysell_flug: '1').where.not(user_id: current_user.id)
-    @myorder = Order.find_by(card_id: @id, buysell_flug: '1', user_id: current_user.id)
-    @buyprice = Order.find_by(card_id: @id, buysell_flug: '1', user_id: current_user.id)
+    @card = Product.find_by(card_id: @id)
     @neworder = Order.new
-    @today = Date.current.strftime('%Y-%m-%d')
-    @price = Order.where(card_id: @id, buysell_flug: '3').where.not(user_id: current_user.id).minimum(:price)
+    order = Order.new
+    @order_id = order.getorderid
+    @orders = order.getorder(@id, '1', current_user.id)
+    @myorder = Order.find_by(card_id: @id, buysell_flug: '1', user_id: current_user.id)
+    @price = order.getprice(@id, '3', current_user.id)
     @order = Order.order(order_id: 'desc').find_by(card_id: @id, buysell_flug: '3', price: @price)
   end
 
   def buyer1
-    @bid = Product.joins(:orders).select('products.*, orders.*').where(orders: { user_id: current_user.id,
-                                                                                 buysell_flug: '1' })
-
-    @buy = Product.joins(:orders).select('products.*, orders.*').where(orders: { out_user_id: current_user.id,
-                                                                                 buysell_flug: '2' }).where.not(orders: { out_flug: '2' })\
-                  .or(Product.joins(:orders).select('products.*, orders.*').where(orders: { user_id: current_user.id,
-                                                                                            buysell_flug: '4' }).where.not(orders: { out_flug: '2' }))
-
-    @end = Product.joins(:orders).select('products.*, orders.*').where(orders: { out_user_id: current_user.id,
-                                                                                 buysell_flug: '2', out_flug: '2' })\
-                  .or(Product.joins(:orders).select('products.*, orders.*').where(orders: { user_id: current_user.id, buysell_flug: '4',
-                                                                                            out_flug: '2' }))
+    order = Order.new
+    @bid = order.getbidask(current_user.id, '1')
+    @buy = order.getbuysell(current_user.id, '2', '2', '4', '2')
+    @end = order.getend(current_user.id, '2', '2', '4', '2')
   end
 
   def buyer2
@@ -47,40 +30,21 @@ class OrdersController < ApplicationController
 
   def sell
     @id = params[:card_id]
-    card = Product.find_by(card_id: @id)
-    @name = card.card_name
-    @photo = card.shuuroku
-
-    @order_id = Order.maximum('order_id')
-    @order_id = if @order_id.blank?
-                  1
-                else
-                  @order_id + 1
-                end
-
-    @orders = Order.where(card_id: @id, buysell_flug: '3').where.not(user_id: current_user.id)
-    @myorder = Order.find_by(card_id: @id, buysell_flug: '3', user_id: current_user.id)
-    @sellprice = Order.find_by(card_id: @id, buysell_flug: '3', user_id: current_user.id)
+    @card = Product.find_by(card_id: @id)
     @neworder = Order.new
-
-    @today = Date.current.strftime('%Y-%m-%d')
-    @price = Order.where(card_id: @id, buysell_flug: '1').where.not(user_id: current_user.id).minimum(:price)
+    order = Order.new
+    @order_id = order.getorderid
+    @orders = order.getorder(@id, '3', current_user.id)
+    @myorder = Order.find_by(card_id: @id, buysell_flug: '3', user_id: current_user.id)
+    @price = order.getprice(@id, '1', current_user.id)
     @order = Order.order(order_id: 'ASC').find_by(card_id: @id, buysell_flug: '1', price: @price)
   end
 
   def seller1
-    @ask = Product.joins(:orders).select('products.*, orders.*').where(orders: { user_id: current_user.id,
-                                                                                 buysell_flug: '3' })
-
-    @sell = Product.joins(:orders).select('products.*, orders.*').where(orders: { out_user_id: current_user.id,
-                                                                                  buysell_flug: '4' }).where.not(orders: { out_flug: '2' })\
-                   .or(Product.joins(:orders).select('products.*, orders.*').where(orders: { user_id: current_user.id,
-                                                                                             buysell_flug: '2' }).where.not(orders: { out_flug: '2' }))
-
-    @end = Product.joins(:orders).select('products.*, orders.*').where(orders: { out_user_id: current_user.id,
-                                                                                 buysell_flug: '4', out_flug: '2' })\
-                  .or(Product.joins(:orders).select('products.*, orders.*').where(orders: { user_id: current_user.id, buysell_flug: '2',
-                                                                                            out_flug: '2' }))
+    order = Order.new
+    @ask = order.getbidask(current_user.id, '3')
+    @sell = order.getbuysell(current_user.id, '4', '2', '2', '2')
+    @end = order.getend(current_user.id, '4', '2', '2', '2')
   end
 
   def seller2

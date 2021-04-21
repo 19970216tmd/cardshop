@@ -29,11 +29,6 @@ class CostsController < ApplicationController
     else
       redirect_to request.referer
     end
-    
-    #@costs = Cost.new(priceparams)
-    #@costs.price = @costs.create(@costs.price,Cost.all.sum(:price))
-    #redirect_to request.referer if @costs.save(priceparams)
-    #redirect_to request.referer
   end
 
   def update

@@ -2,9 +2,9 @@
 <flex>
     <%= render 'layouts/sidebar' %>
     <main>
-        <h1><%= link_to 'home',products_home_path %> >> <%= link_to @name,products_ask_path(card_id: @id) %> >> 販売または出品</h1>
-        <div class="cardname"><%= @name %></div>
-        <div class="resizeimage"><%= image_tag @photo %></div>
+        <h1><%= link_to 'home',products_home_path %> >> <%= link_to @card.card_name,products_ask_path(card_id: @id) %> >> 販売または出品</h1>
+        <div class="cardname"><%= @card.card_name %></div>
+        <div class="resizeimage"><%= image_tag @card.shuuroku %></div>
 
         <div class="tab" id="js-tab">
 
@@ -30,7 +30,7 @@
                             <div class="center">
                                 <%= new.text_field :price, class: "form-control" %>
                             </div>
-                            <%= new.hidden_field :orderdate, :value => @today,class: "form-control" %>
+                            <%= new.hidden_field :orderdate, :value => Date.current.strftime('%Y-%m-%d'),class: "form-control" %>
                             <%= new.hidden_field :out_flug, :value => '0', class: "form-control" %>
                             <%= new.hidden_field :out_user_id, :value => '0', class: "form-control" %>
                             <div class="button3">
@@ -38,14 +38,14 @@
                             </div>
                         <% end %>
                     <% elsif %>
-                        <div class="center">現在<%= @sellprice.price %>円で出品中です</div>
-                        <%= form_with model: @sellprice, local:  true do |new| %>
+                        <div class="center">現在<%= @myorder.price %>円で出品中です</div>
+                        <%= form_with model: @myorder, local:  true do |new| %>
                             <%= new.hidden_field :order_id, class: "form-control" %>
                             <%= new.hidden_field :card_id, class: "form-control" %>
                             <%= new.hidden_field :user_id, class: "form-control" %>
                             <%= new.hidden_field :buysell_flug, :value => '99', class: "form-control" %>
                             <%= new.hidden_field :price, class: "form-control" %>
-                            <%= new.hidden_field :orderdate, :value => @today,class: "form-control" %>
+                            <%= new.hidden_field :orderdate, :value => Date.current.strftime('%Y-%m-%d'),class: "form-control" %>
                             <%= new.hidden_field :out_flug, class: "form-control" %>
                             <%= new.hidden_field :out_user_id, class: "form-control" %>
                             <div class="button3">
