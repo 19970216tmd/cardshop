@@ -1,6 +1,8 @@
 class Order < ApplicationRecord
   belongs_to :product, inverse_of: :orders, foreign_key: :card_id
 
+  validates :price, presence: true, numericality: { only_integer: true }
+
   def getorderid
     order_id = Order.maximum('order_id')
     if order_id.blank?

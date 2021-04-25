@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
 
-  resources :orders, :only => [:create, :show, :update]
-  resources :profiles, :only => [:create, :new, :show, :update]
-  resources :costs, :only => [:create, :show, :update]
+  resources :orders#, :only => [:create, :show, :update]
+  resources :profiles#, :only => [:create, :new, :show, :update]
+  resources :costs#, :only => [:create, :show, :update]
 
   resource :user, only: %i[new create]
 

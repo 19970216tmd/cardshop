@@ -6,6 +6,17 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
+#config.generators do |g|
+#  g.test_framework :rspec,
+#    fixtures: true,
+#    view_specs: false,
+#    helper_specs: false,
+#    routing_specs: false,
+#    controller_specs: true,
+#    request_specs: false
+#  g.fixture_replacement :factory_girl, dir: "spec/factories"
+#end
+
 module Card
   class Application < Rails::Application
     # Initialize configuration defaults for originally generated Rails version.
@@ -17,3 +28,4 @@ module Card
     # the framework and any gems in your application.
   end
 end
+

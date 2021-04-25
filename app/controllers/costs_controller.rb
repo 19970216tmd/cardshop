@@ -1,4 +1,6 @@
 class CostsController < ApplicationController
+  before_action :login?
+
   def new
     @costs = Cost.new
     @rireki = Cost.where(out_flug: '0')
@@ -21,14 +23,12 @@ class CostsController < ApplicationController
 
     @price = Cost.all.sum(:price)
 
-    if @price >= @costs.price && @costs.price.positive?
-
+    if @costs.price.present?
+      request.referer if @costs.price > @price
       @costs.price = @costs.price * -1
-
-      redirect_to request.referer if @costs.save(priceparams)
-    else
-      redirect_to request.referer
     end
+
+    redirect_to request.referer if @costs.save(priceparams)
   end
 
   def update

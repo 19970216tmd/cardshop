@@ -74,7 +74,7 @@ class OrdersController < ApplicationController
 
   def update
     # render plain: params.inspect
-    @order = Order.find(params[:id])
+    @order = Order.find_by(id: params[:id])
     @profile = Profile.find_by(user_id: current_user.id)
 
     if @profile.blank?

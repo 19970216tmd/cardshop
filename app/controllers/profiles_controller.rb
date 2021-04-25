@@ -1,4 +1,6 @@
 class ProfilesController < ApplicationController
+  before_action :login?
+
   def index; end
 
   def new
@@ -6,8 +8,8 @@ class ProfilesController < ApplicationController
   end
 
   def create
-    @profiles = Profile.new(profileparams)
-    redirect_to root_path if @profiles.save(profileparams)
+    @profiles = Profile.new(newprofileparams)
+    redirect_to root_path if @profiles.save(newprofileparams)
   end
 
   def update
@@ -17,7 +19,11 @@ class ProfilesController < ApplicationController
 
   private
 
-  def profileparams
+  def newprofileparams
     params.permit(:user_id, :postalcode, :city, :adress, :building, :sei_kana, :sei_kanzi, :mei_kana, :mei_kanzi, :tel)
+  end
+
+  def profileparams
+    params.require(:profile).permit(:user_id, :postalcode, :city, :adress, :building, :sei_kana, :sei_kanzi, :mei_kana, :mei_kanzi, :tel)
   end
 end

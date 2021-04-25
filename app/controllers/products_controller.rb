@@ -1,5 +1,4 @@
 class ProductsController < ApplicationController
-  helper_method :user_signed_in?
   def home
     @products = Product.all
   end
