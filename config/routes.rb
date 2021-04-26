@@ -1,4 +1,10 @@
 Rails.application.routes.draw do
+  get 'credits/new'
+  get 'credits/show'
+  get 'credit/new'
+  get 'credit/show'
+  get 'card/new'
+  get 'card/show'
   get 'costs/new'
   get 'costs/edit'
   get 'costs/bank'
@@ -28,6 +34,14 @@ Rails.application.routes.draw do
   get 'login', to: 'sessions#new'
   post 'login', to: 'sessions#create'
   delete 'logout', to: 'sessions#destroy'
+
+  resources :credits, only: [:new, :show] do
+  collection do
+    post 'show', to: 'credits#show'
+    post 'pay', to: 'credits#pay'
+    post 'delete', to: 'credits#delete'
+  end
+  end
 
   resources :orders#, :only => [:create, :show, :update]
   resources :profiles#, :only => [:create, :new, :show, :update]

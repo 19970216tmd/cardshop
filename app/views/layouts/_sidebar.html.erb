@@ -16,6 +16,7 @@
                         <li><%= link_to '購入・入札した商品', orders_buyer1_path %></li>
                         <li><%= link_to '販売・出品した商品', orders_seller1_path %></li>
                         <li><%= link_to '登録情報', profiles_new_path %></li>
+                        <li><%= link_to 'カード情報', credits_new_path %></li>
                         <li><%= link_to '出金', costs_new_path %></li>
                         <li class="link"><%= button_to "ログアウト", logout_path, method: :delete %></li>
                         <% if current_user.email == '1' %>

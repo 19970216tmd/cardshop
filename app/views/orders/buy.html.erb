@@ -34,11 +34,32 @@
                             <%= new.hidden_field :out_flug, :value => '0', class: "form-control" %>
                             <%= new.hidden_field :out_user_id, :value => '0', class: "form-control" %>
                             <div class="button3">
-                                <%= new.submit "入札", class: "btn btn-primary" %>
+                                <%= new.submit "入札", class: "btn btn-primary", id: "token" %>
                             </div>
                         <% end %>
+
+                        <div class="center">
+                            <div>支払い情報</div>
+                            <div>
+                                <%= "**** **** **** " + @default_credit_information.last4.to_s %>
+                            </div>
+                            <div>
+                                <%= @default_credit_information.exp_month.to_s + "/" + @default_credit_information.exp_year.to_s.slice(2,3) %>
+                            </div>
+                        </div>
+
                     <% elsif %>
                         <div class="center">現在<%= @myorder.price %>円で入札中です</div>
+
+                        <div class="center">
+                            <div>支払い情報</div>
+                            <div>
+                                <%= "**** **** **** " + @default_credit_information.last4.to_s %>
+                            </div>
+                            <div>
+                                <%= @default_credit_information.exp_month.to_s + "/" + @default_credit_information.exp_year.to_s.slice(2,3) %>
+                            </div>
+                        </div>
 
                         <%= form_with model: @myorder, local:  true do |new| %>
                             <%= new.hidden_field :order_id, class: "form-control" %>
@@ -52,7 +73,7 @@
                             <div class="button3">
                                 <%= new.submit "入札を取り消す", class: "btn btn-primary" %>
                             </div>
-                            <% end %>
+                        <% end %>
                     <% end %>
                 </div>
 
@@ -76,10 +97,21 @@
                                 <%= update.submit "購入", class: "btn btn-primary" %>
                             </div>
                         <% end %>
-                    <% end %>
+
+                        <div class="center">
+                            <div>支払い情報</div>
+                            <div>
+                                <%= "**** **** **** " + @default_credit_information.last4.to_s %>
+                            </div>
+                            <div>
+                                <%= @default_credit_information.exp_month.to_s + "/" + @default_credit_information.exp_year.to_s.slice(2,3) %>
+                            </div>
+                        </div>
+                        <% end %>
                 </div>
             </div>
         </div>
+        <%= javascript_include_tag "costs.js" %>
         <%= javascript_include_tag "costs.js" %>
     </main>
 </flex>

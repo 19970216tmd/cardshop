@@ -1,0 +1,23 @@
+<%= render 'layouts/header' %>
+<flex>
+    <%= render 'layouts/sidebar' %>
+    <main>
+
+      <h2>登録クレジットカード情報</h2>
+      <div class="center">
+        <div>
+          <%= "**** **** **** " + @default_credit_information.last4.to_s %>
+        </div>
+        <div>
+          <%= @default_credit_information.exp_month.to_s + "/" + @default_credit_information.exp_year.to_s.slice(2,3) %>
+        </div>
+      </div>
+
+      <%= form_with(url: delete_credits_path, method: :post, id: 'charge-form',  name: "inputForm",local: true) do |form| %>
+        <%= form.hidden_field name: "card_id", value: "" %>
+        <div class="button3">
+        <%= form.submit "削除する" %>
+        </div>
+      <% end %>
+  </main>
+</flex>
