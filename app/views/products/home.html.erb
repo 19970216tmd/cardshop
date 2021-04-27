@@ -3,12 +3,6 @@
     <%= render 'layouts/sidebar' %>
     <main>
         <h2>カード一覧</h2>
-        <h1>Ajax#index</h1>
-<p id="hoge">赤色になるよ</p>
-
-<script>
-  $("#hoge").css("color","red")
-</script>
         <div>
             <% @products.each do |product| %>
                 <div class="line">
