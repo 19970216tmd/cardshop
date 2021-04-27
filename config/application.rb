@@ -7,7 +7,7 @@ require 'rails/all'
 Bundler.require(*Rails.groups)
 
 #herokuデプロイ用
-#config.assets.initialize_on_precompile = false
+config.assets.digest = true
 
 #config.generators do |g|
 #  g.test_framework :rspec,
