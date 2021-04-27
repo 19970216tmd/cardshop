@@ -11,15 +11,7 @@ class OrdersController < ApplicationController
     @myorder = Order.find_by(card_id: @id, buysell_flug: '1', user_id: current_user.id)
     @price = order.getprice(@id, '3', current_user.id)
     @order = Order.order(order_id: 'desc').find_by(card_id: @id, buysell_flug: '3', price: @price)
-
-    credit = Credit.where(user_id: current_user.id).first
-    if credit.blank?
-      redirect_to credits_new_path
-    else
-      Payjp.api_key = 'sk_test_52b774f65a7f38ddc26f5bc6'
-      customer = Payjp::Customer.retrieve(credit.customer_id)
-      @default_credit_information = customer.cards.retrieve(credit.credit_id)
-    end
+    @default_credit_information = order.getcredit(current_user.id)
   end
 
   def buyer1
@@ -77,11 +69,7 @@ class OrdersController < ApplicationController
     if @neworder.buysell_flug == '1'
       credit = Credit.where(user_id: current_user.id).first
       Payjp.api_key = 'sk_test_52b774f65a7f38ddc26f5bc6'
-      Payjp::Charge.create(
-        amount: @neworder.price,
-        customer: credit.customer_id,
-        currency: 'jpy'
-      )
+      Payjp::Charge.create(amount: @neworder.price, customer: credit.customer_id, currency: 'jpy')
     end
 
     if @profile.blank?
@@ -99,11 +87,7 @@ class OrdersController < ApplicationController
     if @order.buysell_flug == '2'
       credit = Credit.where(user_id: current_user.id).first
       Payjp.api_key = 'sk_test_52b774f65a7f38ddc26f5bc6'
-      Payjp::Charge.create(
-        amount: @neworder.price,
-        customer: credit.customer_id,
-        currency: 'jpy'
-      )
+      Payjp::Charge.create(amount: @order.price, customer: credit.customer_id, currency: 'jpy')
     end
 
     if @profile.blank?

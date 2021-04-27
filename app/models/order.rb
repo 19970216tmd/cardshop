@@ -36,4 +36,14 @@ class Order < ApplicationRecord
     Product.joins(:orders).select('products.*, orders.*').where(orders: { out_user_id: user_id, buysell_flug: flug1, out_flug: flug2 })\
            .or(Product.joins(:orders).select('products.*, orders.*').where(orders: { user_id: user_id, buysell_flug: flug3, out_flug: flug4 }))
   end
+
+  def getcredit(current_user_id)
+    credit = Credit.find_by(user_id: current_user_id)
+    if credit.present?
+      Payjp.api_key = 'sk_test_52b774f65a7f38ddc26f5bc6'
+      customer = Payjp::Customer.retrieve(credit.customer_id)
+      @default_credit_information = customer.cards.retrieve(credit.credit_id)
+    end
+    return if credit.blank?
+  end
 end
