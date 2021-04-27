@@ -2,13 +2,6 @@
 <flex>
  <%= render 'layouts/sidebar' %>
  <main>
-<h1>Ajax#index</h1>
-<p id="hoge">赤色になるよ</p>
-
-<script>
-  $("#hoge").css("color","red")
-</script>
-
   <div class="center">
    <%= form_with(url: pay_credits_path, method: :post, id: 'charge-form',  name: "inputForm",local: true) do |form| %>
     <div>
@@ -32,5 +25,5 @@
     </div>
    <% end %>
   </div>
- </main>
+</main>
 </flex>
