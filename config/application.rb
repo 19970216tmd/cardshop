@@ -6,9 +6,6 @@ require 'rails/all'
 # you've limited to :test, :development, or :production.
 Bundler.require(*Rails.groups)
 
-#herokuデプロイ用
-config.assets.digest = true
-
 #config.generators do |g|
 #  g.test_framework :rspec,
 #    fixtures: true,
