@@ -15,9 +15,14 @@
 
             <div class="tab-contents">
                 <div class="tab-contents-item" data-content="0">
-                   <div class="center">
-                        <% @orders.each do |order| %>
-                        <%= order.price %>
+                    <div class="orderdetail">
+                        <% if @orders.present? %>
+                            <div>他の出品価格</div>
+                            <% @orders.each do |order| %>
+                            <div><%= order.price %></div>
+                            <% end %>
+                        <% else %>
+                            <div>現在出品はありません</div>
                         <% end %>
                     </div>
 

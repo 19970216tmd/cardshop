@@ -39,11 +39,10 @@ class Order < ApplicationRecord
 
   def getcredit(current_user_id)
     credit = Credit.find_by(user_id: current_user_id)
-    if credit.present?
-      Payjp.api_key = 'sk_test_52b774f65a7f38ddc26f5bc6'
-      customer = Payjp::Customer.retrieve(credit.customer_id)
-      @default_credit_information = customer.cards.retrieve(credit.credit_id)
-    end
     return if credit.blank?
+
+    Payjp.api_key = 'sk_test_52b774f65a7f38ddc26f5bc6'
+    customer = Payjp::Customer.retrieve(credit.customer_id)
+    @default_credit_information = customer.cards.retrieve(credit.credit_id)
   end
 end

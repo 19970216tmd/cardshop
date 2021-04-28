@@ -46,6 +46,17 @@ h2{
     font-size: 2rem;
 }
 
+.url {
+    text-align: center;
+}
+
+.url > a{
+    text-align: center;
+    color: #a9a9a9;
+    text-decoration:underline;
+    text-decoration-color: #a9a9a9;
+}
+
 //askの購入ボタン
 
 .button1 > a{
@@ -273,11 +284,21 @@ homelink > a {
     margin-left: 10%;
     margin-right: 10%;
 }
-/*
-div {
-    margin-top: auto;
-    height: 300px;
-}*/
+
+select{
+    font-size: 2rem;
+    font-family: "Yu Gothic","YuGothic"
+}
+
+.orderdetail{
+    text-align: center;
+    margin-bottom: 5%;
+}
+
+.paydetail{
+    text-align: center;
+    margin-top: 5%;
+}
 
 /* 🍔 */
 .open,
@@ -322,3 +343,4 @@ input[type="checkbox"] {
     }
     /* 🍔 */
 }
+

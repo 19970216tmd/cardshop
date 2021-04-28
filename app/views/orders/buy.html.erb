@@ -15,9 +15,14 @@
             <div class="tab-contents">
                 <div class="tab-contents-item" data-content="0">
 
-                    <div class="center">
-                        <% @orders.each do |order| %>
-                        <%= order.price %>
+                    <div class="orderdetail">
+                        <% if @orders.present? %>
+                            <div>他の入札価格</div>
+                            <% @orders.each do |order| %>
+                            <div><%= order.price %></div>
+                            <% end %>
+                        <% else %>
+                            <div>現在入札はありません</div>
                         <% end %>
                     </div>
 
@@ -27,19 +32,19 @@
                             <%= new.hidden_field :card_id, :value => @id, class: "form-control" %>
                             <%= new.hidden_field :user_id, :value => current_user.id,class: "form-control" %>
                             <%= new.hidden_field :buysell_flug, :value => '1', class: "form-control" %>
-                            <div class="center">
-                                <%= new.text_field :price, class: "form-control" %>
-                            </div>
                             <%= new.hidden_field :orderdate, :value => Date.current.strftime('%Y-%m-%d'),class: "form-control" %>
                             <%= new.hidden_field :out_flug, :value => '0', class: "form-control" %>
                             <%= new.hidden_field :out_user_id, :value => '0', class: "form-control" %>
 
                             <% if @default_credit_information.present? %>
+                                <div class="center">
+                                <%= new.text_field :price, class: "form-control" %>
+                                </div>
                                 <div class="button3">
                                     <%= new.submit "入札", class: "btn btn-primary", id: "token" %>
                                 </div>
 
-                                <div class="center">
+                                <div class="paydetail">
                                     <div>支払い情報</div>
                                     <div>
                                         <%= "**** **** **** " + @default_credit_information.last4.to_s %>
@@ -49,14 +54,14 @@
                                     </div>
                                 </div>
                             <% elsif %>
-                                <div class="button3"><%= link_to '支払情報を登録',credits_new_path %></div>
+                                <div class="url"><%= link_to '入札するには支払情報を登録をしてください',credits_new_path %></div>
                             <% end %>
                         <% end %>
 
                     <% elsif %>
                         <div class="center">現在<%= @myorder.price %>円で入札中です</div>
 
-                        <div class="center">
+                        <div class="paydetail">
                             <div>支払い情報</div>
                             <div>
                                 <%= "**** **** **** " + @default_credit_information.last4.to_s %>
@@ -114,7 +119,7 @@
                                     </div>
                                 </div>
                             <% elsif %>
-                                <div class="button3"><%= link_to '支払情報を登録',credits_new_path %></div>
+                                <div class="url"><%= link_to '購入するには支払情報を登録してください',credits_new_path %></div>
                             <% end %>
                         <% end %>
                     <% end %>
