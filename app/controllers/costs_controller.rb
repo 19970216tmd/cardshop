@@ -4,7 +4,7 @@ class CostsController < ApplicationController
   def new
     @costs = Cost.new
     @rireki = Cost.where(out_flug: '0')
-    @price = Cost.all.sum(:price)
+    @price = Cost.where(user_id: current_user.id).sum(:price)
 
     @order_id = Order.maximum('order_id') + 1
   end
@@ -21,7 +21,7 @@ class CostsController < ApplicationController
   def create
     @costs = Cost.new(priceparams)
 
-    @price = Cost.all.sum(:price)
+    @price = Cost.where(user_id: current_user.id).sum(:price)
 
     if @costs.price.present?
       request.referer if @costs.price > @price
