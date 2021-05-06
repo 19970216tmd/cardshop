@@ -7,7 +7,6 @@ class CostsController < ApplicationController
     @price = Cost.where(user_id: current_user.id).sum(:price)
 
     @order_id = Order.maximum('order_id') + 1
-    a
   end
 
   def edit
