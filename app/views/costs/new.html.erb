@@ -15,7 +15,11 @@
           <%= price.hidden_field :user_id, :value => current_user.id, class: "form-control" %>
           <%= price.hidden_field :order_id, :value => @order_id, class: "form-control" %>
 
-          <div class="center">売上金<%= @price %>円</div>
+          <% if @price.present? %>
+            <div class="center">売上金<%= @price %>円</div>
+          <% else %>
+            <div class="center">売上金0円</div>
+          <% end %>
 
           <label class="costlabel">金額</label>
           <div class="costs">
