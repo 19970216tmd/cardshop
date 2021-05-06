@@ -29,10 +29,8 @@ heroku
 *テスト・リファクタリング*  
 rubocop  
 railsbestpractice  
-brakeman  
-<<<<<<< HEAD
-=======
-rspecを現在実装中です。  
->>>>>>> 43891a5169f77e343311a390d471c0b7ff187d3c
+brakeman
 
+*今後の追加機能など*  
 rspecを現在実装中です。  
+実装後にCIツールの導入を予定しています。
