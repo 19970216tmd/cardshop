@@ -30,5 +30,9 @@ heroku
 rubocop  
 railsbestpractice  
 brakeman  
+<<<<<<< HEAD
+=======
+rspecを現在実装中です。  
+>>>>>>> 43891a5169f77e343311a390d471c0b7ff187d3c
 
 rspecを現在実装中です。  
