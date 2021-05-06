@@ -55,15 +55,17 @@
           <% end %>
         </div>
         <div class="tab-contents-item" data-content="1">
-          <% @rireki.each do |product| %>
-            <div class="line">
-              <div>申請金額：<%= product.price*-1 %>円</div>
-              <div>銀行名：<%= product.bank_name %></div>
-              <div>口座種別：<%= product.bank_type %></div>
-              <div>口座番号：<%= product.bank_number %></div>
-              <div>口座名義人カナ：<%= product.bank_user_name_sei %><%= product.bank_user_name_mei %></div>
-              <div>申請日：<%= product.created_at %></div>
-            </div>
+          <% if @rireki.present? %>
+            <% @rireki.each do |product| %>
+              <div class="line">
+                <div>申請金額：<%= product.price*-1 %>円</div>
+                <div>銀行名：<%= product.bank_name %></div>
+                <div>口座種別：<%= product.bank_type %></div>
+                <div>口座番号：<%= product.bank_number %></div>
+                <div>口座名義人カナ：<%= product.bank_user_name_sei %><%= product.bank_user_name_mei %></div>
+                <div>申請日：<%= product.created_at %></div>
+              </div>
+            <% end %>
           <% end %>
         </div>
       </div>
