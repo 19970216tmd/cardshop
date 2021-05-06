@@ -6,7 +6,11 @@ class CostsController < ApplicationController
     @rireki = Cost.where(out_flug: '0')
     @price = Cost.where(user_id: current_user.id).sum(:price)
 
-    @order_id = Order.maximum('order_id') + 1
+    if Order.maximum('order_id').blank?
+      @order_id = 1
+    else
+      @order_id = Order.maximum('order_id') + 1
+    end
   end
 
   def edit
